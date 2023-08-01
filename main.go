@@ -159,6 +159,12 @@ func loadTasks() error {
 }
 
 func main() {
+	// Load the tasks
+	failLoad := loadTasks()
+	if failLoad != nil && os.IsNotExist(failLoad) {
+		fmt.Println("Failed to load tasks:", failLoad)
+	}
+
 	// Define flags for CLI usage
 	var process, taskName, taskHash string
 	var taskID int
@@ -182,5 +188,11 @@ func main() {
 		listTask()
 	default:
 		fmt.Println("Unknown process. Please specify a valid process using the -p flag.")
+	}
+
+	// Save the tasks
+	failSave := saveTasks()
+	if failSave != nil {
+		fmt.Println("Failed to save tasks:", failSave)
 	}
 }
