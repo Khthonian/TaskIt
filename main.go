@@ -117,9 +117,8 @@ func listTask() {
 
 func main() {
 	// Define flags for CLI usage
-	var process, taskName string
+	var process, taskName, taskHash string
 	var taskID int
-	var taskHash string
 
 	flag.StringVar(&process, "p", "", "Enter the process.")
 	flag.StringVar(&taskName, "t", "", "Enter the task name")
