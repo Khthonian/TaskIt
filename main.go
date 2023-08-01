@@ -177,16 +177,16 @@ func main() {
 	}
 
 	// Define flags for CLI usage
-	var act, taskName, taskHash string
+	var process, taskName, taskHash string
 	var taskID int
 	var showHash, deleteAll bool
 
-	flag.StringVar(&act, "act", "", "Enter the process.")
+	flag.StringVar(&process, "process", "", "Enter the process.")
 	flag.StringVar(&taskName, "task", "", "Enter the task name.")
 	flag.IntVar(&taskID, "id", 0, "Enter the task ID.")
 	flag.StringVar(&taskHash, "hash", "", "Enter the task hash value.")
 	flag.BoolVar(&showHash, "show", false, "Show hash values when listing tasks.")
-	flag.BoolVar(&deleteAll, "del", false, "Delete all tasks.")
+	flag.BoolVar(&deleteAll, "delete", false, "Delete all tasks.")
 
 	// Parse command line arguments
 	flag.Parse()
@@ -204,7 +204,7 @@ func main() {
 		return
 	}
 
-	switch act {
+	switch process {
 	case "create":
 		createTask(taskName)
 	case "complete":
