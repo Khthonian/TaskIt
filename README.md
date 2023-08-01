@@ -2,7 +2,7 @@
 TaskIt is a command-line task management tool that allows users to create, complete, delete, and list tasks. Each task is given a name by the user, along with a generated ID number, unique hash value, and completion status. The user can interact with this program through intuitive commands, to enable simple but efficient task management.
 
 ## Features
-- Creates Tasks
+- Create Tasks
 - Complete Tasks
 - Delete Tasks 
 - Delete All Tasks
