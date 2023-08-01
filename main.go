@@ -54,7 +54,7 @@ func createTask(name string) {
 	tasks = append(tasks, task)
 
 	// Alert the user
-	successAlert := fmt.Sprintf("The task, '%s', was successfully created", name)
+	successAlert := fmt.Sprintf("The task, '%s', was successfully created.", name)
 	fmt.Println(successAlert)
 }
 
@@ -69,7 +69,7 @@ func completeTask(id int, hash string) {
 
 			// Alert the user
 			taskName := tasks[index].Name
-			successAlert := fmt.Sprintf("The task, '%s', was successfully completed", taskName)
+			successAlert := fmt.Sprintf("The task, '%s', was successfully completed.", taskName)
 			fmt.Println(successAlert)
 
 			return
@@ -91,7 +91,7 @@ func deleteTask(id int, hash string) {
 			tasks = append(tasks[:index], tasks[index+1:]...)
 
 			// Alert the user
-			successAlert := fmt.Sprintf("The task, '%s', was successfully deleted", taskName)
+			successAlert := fmt.Sprintf("The task, '%s', was successfully deleted.", taskName)
 			fmt.Println(successAlert)
 
 			return
@@ -99,6 +99,13 @@ func deleteTask(id int, hash string) {
 	}
 	// Alert user of an erroneous input
 	fmt.Println("The task could not be found.")
+}
+
+// Define a function to delete all tasks
+func deleteAllTasks() {
+	// Reset the tasks slice
+	tasks = []Task{}
+	fmt.Println("All tasks have been deleted.")
 }
 
 // Define a function to list the tasks
