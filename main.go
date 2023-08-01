@@ -59,11 +59,11 @@ func createTask(name string) {
 }
 
 // Define a function to complete a task
-func completeTask(id int, hash string) {
+func completeTask(name string, id int, hash string) {
 	// Iterate through the tasks array
 	for index, task := range tasks {
 		// Check if the task matches the ID or the hash value
-		if (id != 0 && task.ID == id) || (hash != "" && task.Hash == hash) {
+		if (name != "" && task.Name == name || id != 0 && task.ID == id) || (hash != "" && task.Hash == hash) {
 			// Switch the complete bool value to true
 			tasks[index].Complete = true
 
@@ -80,11 +80,11 @@ func completeTask(id int, hash string) {
 }
 
 // Define a function to delete a task
-func deleteTask(id int, hash string) {
+func deleteTask(name string, id int, hash string) {
 	// Iterate through the tasks array
 	for index, task := range tasks {
 		// Check if the task matches the ID or the hash value
-		if (id != 0 && task.ID == id) || (hash != "" && task.Hash == hash) {
+		if (name != "" && task.Name == name || id != 0 && task.ID == id) || (hash != "" && task.Hash == hash) {
 			taskName := tasks[index].Name
 
 			// Slice before and after the index to exclude the deleted task
@@ -208,9 +208,9 @@ func main() {
 	case "create":
 		createTask(taskName)
 	case "complete":
-		completeTask(taskID, taskHash)
+		completeTask(taskName, taskID, taskHash)
 	case "delete":
-		deleteTask(taskID, taskHash)
+		deleteTask(taskName, taskID, taskHash)
 	case "list":
 		listTask(showHash)
 	default:
