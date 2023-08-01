@@ -65,3 +65,18 @@ func completeTask(id int, hash string) {
 	// Alert user of an erroneous input
 	fmt.Println("The task could not be found.")
 }
+
+// Define a function to delete a task
+func deleteTask(id int, hash string) {
+	// Iterate though the tasks array
+	for index, task := range tasks {
+		// Check if the task matches the ID or the hash value
+		if (id != 0 && task.ID == id) || (hash != "" && task.Hash == hash) {
+			// Slice before and after the index to exclude the deleted task
+			tasks = append(tasks[:index], tasks[index+1:]...)
+			return
+		}
+	}
+	// Alert user of an erroneous input
+	fmt.Println("The task could not be found.")
+}
