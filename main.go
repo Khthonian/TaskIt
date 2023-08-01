@@ -31,3 +31,22 @@ func generateHash(name string, id int) string {
 	// Return the hash
 	return fmt.Sprintf("%x", hasher.Sum(nil))
 }
+
+// Define a function to create a task
+func createTask(name string) {
+	// Set the ID equal to one more than the current number of tasks
+	id := len(tasks) + 1
+	// Generate a hash from the name and ID
+	hash := generateHash(name, id)
+
+	// Define the new task
+	task := Task{
+		Name:     name,
+		ID:       id,
+		Hash:     hash,
+		Complete: false,
+	}
+
+	// Add the new task to the tasks array
+	tasks = append(tasks, task)
+}
