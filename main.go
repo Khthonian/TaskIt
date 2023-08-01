@@ -11,3 +11,6 @@ type Task struct {
 	// Has the task been completed?
 	Complete bool
 }
+
+// Define an array to hold the tasks structures
+var tasks []Task
