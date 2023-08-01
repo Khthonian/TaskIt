@@ -2,6 +2,7 @@ package main
 
 import (
 	"crypto/sha256"
+	"flag"
 	"fmt"
 )
 
@@ -111,5 +112,33 @@ func listTask() {
 
 		// Print the status of the task
 		fmt.Printf("Task: %s\n ID: %d\n Status: %s\n", task.Name, task.ID, taskStatus)
+	}
+}
+
+func main() {
+	// Define flags for CLI usage
+	var process, taskName string
+	var taskID int
+	var taskHash string
+
+	flag.StringVar(&process, "p", "", "Enter the process.")
+	flag.StringVar(&taskName, "t", "", "Enter the task name")
+	flag.IntVar(&taskID, "id", 0, "Enter the task ID")
+	flag.StringVar(&taskHash, "hash", "", "Enter the task hash value")
+
+	// Parse command line arguments
+	flag.Parse()
+
+	switch process {
+	case "add":
+		createTask(taskName)
+	case "complete":
+		completeTask(taskID, taskHash)
+	case "delete":
+		deleteTask(taskID, taskHash)
+	case "list":
+		listTask()
+	default:
+		fmt.Println("Unknown process. Please specify a valid process using the -p flag.")
 	}
 }
