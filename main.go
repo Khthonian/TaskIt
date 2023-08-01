@@ -63,10 +63,12 @@ func completeTask(id int, hash string) {
 		if (id != 0 && task.ID == id) || (hash != "" && task.Hash == hash) {
 			// Switch the complete bool value to true
 			tasks[index].Complete = true
+
 			// Alert the user
 			taskName := tasks[index].Name
 			successAlert := fmt.Sprintf("The task, '%s', was successfully completed", taskName)
 			fmt.Println(successAlert)
+
 			return
 		}
 	}
@@ -76,19 +78,38 @@ func completeTask(id int, hash string) {
 
 // Define a function to delete a task
 func deleteTask(id int, hash string) {
-	// Iterate though the tasks array
+	// Iterate through the tasks array
 	for index, task := range tasks {
 		// Check if the task matches the ID or the hash value
 		if (id != 0 && task.ID == id) || (hash != "" && task.Hash == hash) {
 			// Slice before and after the index to exclude the deleted task
 			tasks = append(tasks[:index], tasks[index+1:]...)
+
 			// Alert the user
 			taskName := tasks[index].Name
 			successAlert := fmt.Sprintf("The task, '%s', was successfully deleted", taskName)
 			fmt.Println(successAlert)
+
 			return
 		}
 	}
 	// Alert user of an erroneous input
 	fmt.Println("The task could not be found.")
+}
+
+// Define a function to list the tasks
+func listTask() {
+	// Iterate through the tasks array
+	for _, task := range tasks {
+		// Default the status text to incomplete
+		taskStatus := "Incomplete"
+		// Check if the task is complete
+		if task.Complete {
+			// Change the status text to complete
+			taskStatus = "Complete"
+		}
+
+		// Print the status of the task
+		fmt.Printf("Task: %s\n ID: %d\n Status: %s\n", task.Name, task.ID, taskStatus)
+	}
 }
