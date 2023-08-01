@@ -22,9 +22,12 @@ var tasks []Task
 
 // Define a function to create a hash
 func generateHash(name string, id int) string {
-	// hello
+	// Concatenate the name and ID
 	input := fmt.Sprintf("%s%d", name, id)
+	// Create a new SHA-256 hash object
 	hasher := sha256.New()
+	// Write the input to the hash object
 	hasher.Write([]byte(input))
+	// Return the hash
 	return fmt.Sprintf("%x", hasher.Sum(nil))
 }
