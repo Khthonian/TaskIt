@@ -138,6 +138,26 @@ func saveTasks() error {
 	return fail
 }
 
+// Define a function to load tasks from a JSON file
+func loadTasks() error {
+	// Open the JSON file
+	file, fail := os.Open("tasks.json")
+	// If file creation fails, return error
+	if fail != nil {
+		return fail
+	}
+
+	// Close the file at the end
+	defer file.Close()
+
+	// Create a new JSON decoder to read from the file
+	decoder := json.NewDecoder(file)
+	// Decode the tasks from JSON formatting and write to the tasks slice
+	fail = decoder.Decode(&tasks)
+	// Return any decoding errors
+	return fail
+}
+
 func main() {
 	// Define flags for CLI usage
 	var process, taskName, taskHash string
