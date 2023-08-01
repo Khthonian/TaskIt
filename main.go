@@ -102,7 +102,7 @@ func deleteTask(id int, hash string) {
 }
 
 // Define a function to list the tasks
-func listTask() {
+func listTask(showHash bool) {
 	// Iterate through the tasks array
 	for _, task := range tasks {
 		// Default the status text to incomplete
@@ -114,7 +114,11 @@ func listTask() {
 		}
 
 		// Print the status of the task
-		fmt.Printf("Task: %s\n ID: %d\n Status: %s\n", task.Name, task.ID, taskStatus)
+		if showHash {
+			fmt.Printf("Task: %s\nID: %d\nStatus: %s\nHash: %s\n\n", task.Name, task.ID, taskStatus, task.Hash)
+		} else {
+			fmt.Printf("Task: %s\nID: %d\nStatus: %s\n\n", task.Name, task.ID, taskStatus)
+		}
 	}
 }
 
@@ -168,11 +172,13 @@ func main() {
 	// Define flags for CLI usage
 	var process, taskName, taskHash string
 	var taskID int
+	var showHash bool
 
 	flag.StringVar(&process, "p", "", "Enter the process.")
-	flag.StringVar(&taskName, "t", "", "Enter the task name")
-	flag.IntVar(&taskID, "id", 0, "Enter the task ID")
-	flag.StringVar(&taskHash, "hash", "", "Enter the task hash value")
+	flag.StringVar(&taskName, "t", "", "Enter the task name.")
+	flag.IntVar(&taskID, "id", 0, "Enter the task ID.")
+	flag.StringVar(&taskHash, "h", "", "Enter the task hash value.")
+	flag.BoolVar(&showHash, "sh", false, "Show hash values when listing tasks.")
 
 	// Parse command line arguments
 	flag.Parse()
@@ -185,7 +191,7 @@ func main() {
 	case "delete":
 		deleteTask(taskID, taskHash)
 	case "list":
-		listTask()
+		listTask(showHash)
 	default:
 		fmt.Println("Unknown process. Please specify a valid process using the -p flag.")
 	}
