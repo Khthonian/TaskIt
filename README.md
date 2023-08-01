@@ -62,4 +62,5 @@ Once `installTaskIt.sh` has been run, `uninstallTaskIt.sh` will automatically be
 ```bash
 sudo bash uninstallTaskIt.sh
 ```
-
+## License
+This project is licensed under the [MIT License](LICENSE.md).
