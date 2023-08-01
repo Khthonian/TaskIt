@@ -2,8 +2,10 @@ package main
 
 import (
 	"crypto/sha256"
+	"encoding/json"
 	"flag"
 	"fmt"
+	"os"
 )
 
 // Define the structure of a task
@@ -83,11 +85,12 @@ func deleteTask(id int, hash string) {
 	for index, task := range tasks {
 		// Check if the task matches the ID or the hash value
 		if (id != 0 && task.ID == id) || (hash != "" && task.Hash == hash) {
+			taskName := tasks[index].Name
+
 			// Slice before and after the index to exclude the deleted task
 			tasks = append(tasks[:index], tasks[index+1:]...)
 
 			// Alert the user
-			taskName := tasks[index].Name
 			successAlert := fmt.Sprintf("The task, '%s', was successfully deleted", taskName)
 			fmt.Println(successAlert)
 
@@ -115,6 +118,26 @@ func listTask() {
 	}
 }
 
+// Define a function to save tasks to a JSON file
+func saveTasks() error {
+	// Create a new file named tasks.json
+	file, fail := os.Create("tasks.json")
+	// If file creation fails, return error
+	if fail != nil {
+		return fail
+	}
+
+	// Close the file at the end
+	defer file.Close()
+
+	// Create a new JSON encoder to write to the file
+	encoder := json.NewEncoder(file)
+	// Encode the tasks in JSON formatting and write to the file
+	fail = encoder.Encode(tasks)
+	// Return any encoding errors
+	return fail
+}
+
 func main() {
 	// Define flags for CLI usage
 	var process, taskName, taskHash string
@@ -129,7 +152,7 @@ func main() {
 	flag.Parse()
 
 	switch process {
-	case "add":
+	case "create":
 		createTask(taskName)
 	case "complete":
 		completeTask(taskID, taskHash)
