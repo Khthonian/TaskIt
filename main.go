@@ -179,16 +179,30 @@ func main() {
 	// Define flags for CLI usage
 	var process, taskName, taskHash string
 	var taskID int
-	var showHash bool
+	var showHash, deleteAll bool
 
 	flag.StringVar(&process, "p", "", "Enter the process.")
 	flag.StringVar(&taskName, "t", "", "Enter the task name.")
 	flag.IntVar(&taskID, "id", 0, "Enter the task ID.")
 	flag.StringVar(&taskHash, "h", "", "Enter the task hash value.")
 	flag.BoolVar(&showHash, "sh", false, "Show hash values when listing tasks.")
+	flag.BoolVar(&deleteAll, "d", false, "Delete all tasks.")
 
 	// Parse command line arguments
 	flag.Parse()
+
+	// Check if the user wants to delete all tasks
+	if deleteAll {
+		deleteAllTasks()
+
+		// Save the tasks
+		failSave := saveTasks()
+		if failSave != nil {
+			fmt.Println("Failed to save tasks:", failSave)
+		}
+
+		return
+	}
 
 	switch process {
 	case "create":
