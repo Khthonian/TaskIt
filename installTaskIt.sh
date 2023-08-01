@@ -69,7 +69,7 @@ echo "$APP_NAME uninstalled successfully."
 
 # Delete this uninstall script
 echo "Removing uninstall script..."
-rm -- "$0"
+rm -- "uninstallTaskIt.sh"
 
 echo "Uninstall complete."
 
