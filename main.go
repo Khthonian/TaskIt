@@ -49,6 +49,10 @@ func createTask(name string) {
 
 	// Add the new task to the tasks array
 	tasks = append(tasks, task)
+
+	// Alert the user
+	successAlert := fmt.Sprintf("The task, '%s', was successfully created", name)
+	fmt.Println(successAlert)
 }
 
 // Define a function to complete a task
@@ -59,6 +63,10 @@ func completeTask(id int, hash string) {
 		if (id != 0 && task.ID == id) || (hash != "" && task.Hash == hash) {
 			// Switch the complete bool value to true
 			tasks[index].Complete = true
+			// Alert the user
+			taskName := tasks[index].Name
+			successAlert := fmt.Sprintf("The task, '%s', was successfully completed", taskName)
+			fmt.Println(successAlert)
 			return
 		}
 	}
@@ -74,6 +82,10 @@ func deleteTask(id int, hash string) {
 		if (id != 0 && task.ID == id) || (hash != "" && task.Hash == hash) {
 			// Slice before and after the index to exclude the deleted task
 			tasks = append(tasks[:index], tasks[index+1:]...)
+			// Alert the user
+			taskName := tasks[index].Name
+			successAlert := fmt.Sprintf("The task, '%s', was successfully deleted", taskName)
+			fmt.Println(successAlert)
 			return
 		}
 	}
