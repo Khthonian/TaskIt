@@ -62,5 +62,6 @@ func completeTask(id int, hash string) {
 			return
 		}
 	}
+	// Alert user of an erroneous input
 	fmt.Println("The task could not be found.")
 }
