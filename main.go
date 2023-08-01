@@ -50,3 +50,17 @@ func createTask(name string) {
 	// Add the new task to the tasks array
 	tasks = append(tasks, task)
 }
+
+// Define a function to complete a task
+func completeTask(id int, hash string) {
+	// Iterate through the tasks array
+	for index, task := range tasks {
+		// Check if the task matches the ID or the hash value
+		if (id != 0 && task.ID == id) || (hash != "" && task.Hash == hash) {
+			// Switch the complete bool value to true
+			tasks[index].Complete = true
+			return
+		}
+	}
+	fmt.Println("The task could not be found.")
+}
