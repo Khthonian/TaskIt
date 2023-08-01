@@ -181,12 +181,12 @@ func main() {
 	var taskID int
 	var showHash, deleteAll bool
 
-	flag.StringVar(&process, "process", "", "Enter the process.")
-	flag.StringVar(&taskName, "task", "", "Enter the task name.")
-	flag.IntVar(&taskID, "id", 0, "Enter the task ID.")
-	flag.StringVar(&taskHash, "hash", "", "Enter the task hash value.")
-	flag.BoolVar(&showHash, "show", false, "Show hash values when listing tasks.")
-	flag.BoolVar(&deleteAll, "delete", false, "Delete all tasks.")
+	flag.StringVar(&process, "p", "", "Enter the process.")
+	flag.StringVar(&taskName, "t", "", "Enter the task name.")
+	flag.IntVar(&taskID, "i", 0, "Enter the task ID.")
+	flag.StringVar(&taskHash, "H", "", "Enter the task hash value.")
+	flag.BoolVar(&showHash, "s", false, "Show hash values when listing tasks.")
+	flag.BoolVar(&deleteAll, "D", false, "Delete all tasks.")
 
 	// Parse command line arguments
 	flag.Parse()
